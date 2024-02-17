@@ -86,5 +86,5 @@ for num in range(1,6):
 
 df_all = pd.concat([df1,df2,df3]).drop_duplicates()
     
-# df_all.to_csv('../../data/newsapi_transgender_articles_raw.csv')
+# df_all.to_csv('../../data/newsapi_corpus_raw.csv')
 
