@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 
 df1 = pd.DataFrame(columns=['title','description','content','author','publishedAt','source','url','urlToImage'])
+print('running!')
 
 #Changing sorting parameters to get around the free API limitations.
 #There is a maximum page limit of 5, limiting the number of results seen even further than would be possible given the 100 queries/day limitation.
