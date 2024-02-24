@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['pipelines\\acquire\\NewsAPI.py', 'pipelines\\acquire\\GroundNewsWebScraper.py', 'pipelines\\acquire\\GroundNewsSourceTexts.py']
+recent_files = ['pipelines\\clean\\NewsAPICorpus.py', 'pipelines\\acquire\\WorldNewsAPI.py']
 
 [main]
 version = 0.2.0
