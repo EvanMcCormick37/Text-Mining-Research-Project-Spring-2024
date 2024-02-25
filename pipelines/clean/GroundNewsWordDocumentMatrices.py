@@ -1,9 +1,6 @@
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 
-df = pd.read_csv('../../data/groundnews_corpus_clean.csv',index_col=0).fillna('')
-#Extract the metadata, we'll add it back in later
-metadata = df.loc[:,('bias','factuality','owner','source','owner_type')]
 
 cv = CountVectorizer()
 cv_s = CountVectorizer(stop_words='english')
