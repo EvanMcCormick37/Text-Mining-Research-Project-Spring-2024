@@ -60,8 +60,22 @@ world_news_text_l_cv = create_wdm(world_news['text_l'], world_news_metadata, cv,
 world_news_title_l_tv = create_wdm(world_news['title_l'], world_news_metadata, tv, 6)
 world_news_text_l_tv = create_wdm(world_news['text_l'], world_news_metadata, tv, 15)
 
-# Can't create this one as it's too large XD. We'll have to shrink it somehow in the process of making it..
-# world_news_text_sn2 = create_wdm(world_news['text'], world_news_metadata, cv_sn2, 12)
+#Create the WDMs for Ground News
+
+ground_news_title_l_cv = create_wdm(ground_news['title'], ground_news_metadata, cv, 3)
+ground_news_title_l_tv = create_wdm(ground_news['title'], ground_news_metadata, tv, 3)
+ground_news_title_s_cv = create_wdm(ground_news['title_s'], ground_news_metadata, cv, 3)
+ground_news_title_s_tv = create_wdm(ground_news['title_s'], ground_news_metadata, tv, 3)
+
+ground_news_summary_l_cv = create_wdm(ground_news['summary'], ground_news_metadata, cv, 3)
+ground_news_summary_l_tv = create_wdm(ground_news['summary'], ground_news_metadata, tv, 3)
+ground_news_summary_s_cv = create_wdm(ground_news['summary_s'], ground_news_metadata, cv, 3)
+ground_news_summary_s_tv = create_wdm(ground_news['summary_s'], ground_news_metadata, tv, 3)
+
+ground_news_source_text_l_cv = create_wdm(ground_news['source_text'], ground_news_metadata, cv, 3)
+ground_news_source_text_l_tv = create_wdm(ground_news['source_text'], ground_news_metadata, tv, 3)
+ground_news_source_text_s_cv = create_wdm(ground_news['source_text_s'], ground_news_metadata, cv, 3)
+ground_news_source_text_s_tv = create_wdm(ground_news['source_text_s'], ground_news_metadata, tv, 3)
 
 #Saving WDMs to csv.
 news_title_s_cv.to_csv('../../data/wdms/count/newsapi/stemmed/title.csv')
@@ -89,3 +103,17 @@ world_news_text_s_cv.to_csv('../../data/wdms/tfidf/worldnewsapi/stemmed/text.csv
 world_news_title_l_cv.to_csv('../../data/wdms/tfidf/worldnewsapi/lemmed/title.csv')
 world_news_text_l_cv.to_csv('../../data/wdms/tfidf/worldnewsapi/lemmed/title.csv')
 
+
+ground_news_title_s_cv.to_csv('../../data/wdms/count/groundnews/stemmed/title.csv')
+ground_news_summary_s_cv.to_csv('../../data/wdms/count/groundnews/stemmed/desc.csv')
+ground_news_source_text_s_cv.to_csv('../../data/wdms/count/groundnews/stemmed/content.csv')
+ground_news_title_s_tv.to_csv('../../data/wdms/tfidf/groundnews/stemmed/title.csv')
+ground_news_summary_s_tv.to_csv('../../data/wdms/tfidf/groundnews/stemmed/desc.csv')
+ground_news_source_text_s_tv.to_csv('../../data/wdms/tfidf/groundnews/stemmed/content.csv')
+
+ground_news_title_l_cv.to_csv('../../data/wdms/count/groundnews/lemmed/title.csv')
+ground_news_summary_l_cv.to_csv('../../data/wdms/count/groundnews/lemmed/desc.csv')
+ground_news_source_text_l_cv.to_csv('../../data/wdms/count/groundnews/lemmed/content.csv')
+ground_news_title_l_tv.to_csv('../../data/wdms/tfidf/groundnews/lemmed/title.csv')
+ground_news_summary_l_tv.to_csv('../../data/wdms/tfidf/groundnews/lemmed/desc.csv')
+ground_news_source_text_l_tv.to_csv('../../data/wdms/tfidf/groundnews/lemmed/content.csv')
