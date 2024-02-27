@@ -105,15 +105,15 @@ world_news_text_l_cv.to_csv('../../data/wdms/tfidf/worldnewsapi/lemmed/title.csv
 
 
 ground_news_title_s_cv.to_csv('../../data/wdms/count/groundnews/stemmed/title.csv')
-ground_news_summary_s_cv.to_csv('../../data/wdms/count/groundnews/stemmed/desc.csv')
-ground_news_source_text_s_cv.to_csv('../../data/wdms/count/groundnews/stemmed/content.csv')
+ground_news_summary_s_cv.to_csv('../../data/wdms/count/groundnews/stemmed/summ.csv')
+ground_news_source_text_s_cv.to_csv('../../data/wdms/count/groundnews/stemmed/source.csv')
 ground_news_title_s_tv.to_csv('../../data/wdms/tfidf/groundnews/stemmed/title.csv')
-ground_news_summary_s_tv.to_csv('../../data/wdms/tfidf/groundnews/stemmed/desc.csv')
-ground_news_source_text_s_tv.to_csv('../../data/wdms/tfidf/groundnews/stemmed/content.csv')
+ground_news_summary_s_tv.to_csv('../../data/wdms/tfidf/groundnews/stemmed/summ.csv')
+ground_news_source_text_s_tv.to_csv('../../data/wdms/tfidf/groundnews/stemmed/source.csv')
 
 ground_news_title_l_cv.to_csv('../../data/wdms/count/groundnews/lemmed/title.csv')
-ground_news_summary_l_cv.to_csv('../../data/wdms/count/groundnews/lemmed/desc.csv')
-ground_news_source_text_l_cv.to_csv('../../data/wdms/count/groundnews/lemmed/content.csv')
+ground_news_summary_l_cv.to_csv('../../data/wdms/count/groundnews/lemmed/summ.csv')
+ground_news_source_text_l_cv.to_csv('../../data/wdms/count/groundnews/lemmed/source.csv')
 ground_news_title_l_tv.to_csv('../../data/wdms/tfidf/groundnews/lemmed/title.csv')
-ground_news_summary_l_tv.to_csv('../../data/wdms/tfidf/groundnews/lemmed/desc.csv')
-ground_news_source_text_l_tv.to_csv('../../data/wdms/tfidf/groundnews/lemmed/content.csv')
+ground_news_summary_l_tv.to_csv('../../data/wdms/tfidf/groundnews/lemmed/summ.csv')
+ground_news_source_text_l_tv.to_csv('../../data/wdms/tfidf/groundnews/lemmed/source.csv')
