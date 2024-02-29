@@ -111,6 +111,10 @@ ul {
   width: 100%;
 }
 
+ol li {
+  display: block;
+}
+
 dl {
   margin-top: 0;
   margin-bottom: 1rem;
