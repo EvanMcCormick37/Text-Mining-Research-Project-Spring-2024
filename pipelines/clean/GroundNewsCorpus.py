@@ -71,4 +71,4 @@ for i in range(len(df)):
     df.loc[i,'title'],df.loc[i,'summary'],df.loc[i,'source_text'] = clean_source_text(
         df.loc[i,'title'],df.loc[i,'summary'],df.loc[i,'source_text'])
 
-df.to_csv('../../data/groundnews_corpus_clean.csv')
+df.to_csv('../../data/groundnews_corpus_cleaned.csv')

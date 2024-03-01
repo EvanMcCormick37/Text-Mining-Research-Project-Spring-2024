@@ -5,7 +5,7 @@ import nltk
 from nltk.stem import PorterStemmer
 
 ps = PorterStemmer()
-ground_news = pd.read_csv('../../data/groundnews_corpus_clean.csv',index_col=0).fillna('')
+ground_news = pd.read_csv('../../data/groundnews_corpus_cleaned.csv',index_col=0).fillna('')
 junk = re.compile('[^a-zA-Z\\d]')
 
 #slice the text into words and stem each word
