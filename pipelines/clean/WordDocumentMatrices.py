@@ -98,10 +98,10 @@ world_news_text_s_cv.to_csv('../../data/wdms/count/worldnewsapi/stemmed/text.csv
 world_news_title_l_cv.to_csv('../../data/wdms/count/worldnewsapi/lemmed/title.csv')
 world_news_text_l_cv.to_csv('../../data/wdms/count/worldnewsapi/lemmed/text.csv')
 
-world_news_title_s_cv.to_csv('../../data/wdms/tfidf/worldnewsapi/stemmed/title.csv')
-world_news_text_s_cv.to_csv('../../data/wdms/tfidf/worldnewsapi/stemmed/text.csv')
-world_news_title_l_cv.to_csv('../../data/wdms/tfidf/worldnewsapi/lemmed/title.csv')
-world_news_text_l_cv.to_csv('../../data/wdms/tfidf/worldnewsapi/lemmed/title.csv')
+world_news_title_s_tv.to_csv('../../data/wdms/tfidf/worldnewsapi/stemmed/title.csv')
+world_news_text_s_tv.to_csv('../../data/wdms/tfidf/worldnewsapi/stemmed/text.csv')
+world_news_title_l_tv.to_csv('../../data/wdms/tfidf/worldnewsapi/lemmed/title.csv')
+world_news_text_l_tv.to_csv('../../data/wdms/tfidf/worldnewsapi/lemmed/text.csv')
 
 
 ground_news_title_s_cv.to_csv('../../data/wdms/count/groundnews/stemmed/title.csv')
