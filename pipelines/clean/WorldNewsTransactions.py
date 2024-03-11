@@ -1,6 +1,7 @@
 import pandas as pd
 
-wdm = pd.read_csv('data/wdms/count/worldnewsapi/lemmed/title.csv',index_col=0)
+# wdm = pd.read_csv('data/wdms/count/worldnewsapi/lemmed/title.csv',index_col=0)
+wdm = pd.read_csv('data/wdms/count/worldnewsapi/lemmed/text.csv',index_col=0)
 
 basket_df = pd.DataFrame(columns=['transactions'])
 for i in range(len(wdm)):
@@ -12,4 +13,4 @@ for i in range(len(wdm)):
     basket = ' '.join(list(terms.index))
     basket_df.loc[len(basket_df.index)]=basket
 
-basket_df.to_csv('data/transaction/worldnews_title.csv')
+basket_df.to_csv('data/transaction/worldnews_text.csv')
