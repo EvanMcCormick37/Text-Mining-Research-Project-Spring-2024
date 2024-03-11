@@ -67,6 +67,23 @@ body {
   outline: 0 !important;
 }
 
+figure {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+figcaption {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  margin-top: 10px;
+  background-color: #04AA6D;
+  padding: 5px;
+}
+
 hr {
   box-sizing: content-box;
   height: 0;
@@ -3423,6 +3440,13 @@ input[type="button"].btn-block {
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
 }
+.title {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  border: none;
+  text-align: center;
+}
 /* Dropdown Button */
 .dropbtn {
   background-color: #04AA6D;
@@ -3436,6 +3460,13 @@ input[type="button"].btn-block {
 .dropdown {
   position: relative;
   display: inline-block;
+}
+
+.medium-img { 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 .tabset {
