@@ -5,7 +5,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>About</title>
+  <title>dataCleaning</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
   <!-- bootstrap core css -->
@@ -19482,84 +19484,1120 @@ all of MD as it is not optimized for dense, information rich UIs.
         <div class="jp-InputPrompt jp-InputArea-prompt">
         </div>
         <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-          <figure>
-            <img src="images/trans-rights-intro.jpg" alt="transgender-rally">
-            <figcaption>A transgender rights rally.</figcaption>
-          </figure>
-          <h1 id="Transgender-Rights-Movement">The Transgender Rights Movement<a class="anchor-link"
-              href="#Transgender-Rights-Movement">&#182;</a></h1>
-          <h3>trans·gen·der</h3>
-          <h4>/ˌtranzˈjendər,ˌtran(t)sˈjendər/</h4>
-          <h4><i>adjective</i>- denoting or relating to a person whose gender identity does not correspond with the sex registered for them at birth.</h4>
-          <p>In recent years, the transgender rights movement has grown massively, and seen it's fair share of public and political controversy. Stemming
-            from the LGBT movement of the early 2000s, this movement is pushing the US government to enact policies which would give transgender individuals specific protections and allowances. Many
-            people see this as a civil rights movement, in which the trans community is pushing for similar rights to other groups. Others question the legitimacy of the claimed rights, and indeed some even question the
-            legitimacy of being transgender at all.</p>
-          <h2 id="Many-Battlegrounds">Many Battlegrounds of the Transgender Rights Movement<a class="anchor-link" href="#Many-Battlegrounds">&#182;</a>
-          </h2>
-          <h3 id="Gender-Specific-Activities-and-Areas">Gender-Specific Activities and Areas<a class="anchor-link"
-              href="#Gender-Specific-Activities-and-Areas">&#182;</a></h3>
-          <p>Should transgender individuals be granted admission into gender-specific areas corresponding
-            to their gender identity, or only to the gender they're assigned to at
-            birth? This is a hotly debated topic across multiple areas, such as:</p>
-          <ol>
-            <li>Use of male/female public restrooms</li>
-            <li>Admission into all-male/all-female schools and colleges</li>
-            <li>Participation in male/female sports divisions</li>
-          </ol>
-          <h3 id="Health-and-Gender-Affirming-Care">Health and Gender-Affirming Care<a class="anchor-link"
-              href="#Health-and-Gender-Affirming-Care">&#182;</a></h3>
-          <p>Medical procedures for transgender people are often
-            lumped together under the term 'gender-affirming care', although this term includes a wide variety of
-            medical procedures with varying degrees of impact on the body. The efficacy of gender affirming care is hotly debated, with the administration of hormone
-            blockers to transgender minors being an issue of particular focus.  For exampe, Alabama House Bill 1, introduced
-            in 2021, attempted to prevent minors from receiving medication intended to <em>'alter the appearance of the
-              minor child's gender or delay puberty'</em>. The bill died on the house floor later that year
-            (Alabama HB1).</p>
-          <h3 id="Discrimination-and-Violence">Discrimination and Violence<a class="anchor-link"
-              href="#Discrimination-and-Violence">&#182;</a></h3>
-          <p><strong>'Transmysogyny'</strong> is defined as
-            iscrimination and violence directed towards transgender individuals. According to a survey conducted by the
-            National Coalition of Anti-Violence Programs (NCAVP), black transgender individuals are particularly at risk
-            for violence. Of 17 homicides of trans and gender-nonconforming people counted by the NCAVP in 2017, 16 had
-            been people of color; 15 had been transgender women; and 13 had been black transgender women(Waters).</p>
-            <figure>
-              <img class="medium-img" src="images/brianna-ghey.jpg">
-              <figcaption>Brianna Ghey, a transgender girl who lived in london, was murdered last year. Her murder was a recent example of violence against transgender individuals, and may have been partly motivated by transmysogyny.</figcaption>
-            </figure>
-          <h2 id="A-Divided-Public">A Divided Public<a class="anchor-link" href="#A-Divided-Public">&#182;</a></h2>
-          <p>A Pew Research Center poll recently found that american public opinion sharply divided on trans
-            individuals, and the degree to which their gender identities should be accepted, affirmed, and/or protected
-            by society. For example, while a majority of americans (64%) supporedt legislation that would <em>"protect
-              trans people from discrimination in jobs, housing, and public spaces"</em>, a sizeable minority (10%)
-            opposed/strongly opposed such legislation. In the same poll, 38% of americans surveyed said that the US
-            <em>'has gone too far in accepting'</em> trans people, while 36% said that the US <em>'hasn't gone far
-              enough'</em>. In addition, people's opinions on these issues were drastically influenced by the political
-            party they identified with. Here's a concrete list of issues covered by the survey.
-            <figure>
-              <img class="medium-img" src="images/transgender-laws-poll.png" alt="Survey">
-              <figcaption>A recent poll by Pew Research Center shows a sharply divided public opinion on transgender-related legislation</figcaption>
-            </figure>
+          <h1 id="Data-Cleaning">Data Cleaning<a class="anchor-link" href="#Data-Cleaning">&#182;</a></h1>
+          <p>So, now I have a bunch of text relating to transgender events in the News. How can I turn this text into
+            data I can easily analyze? The first step is cleaning it up into a cleaned corpus by removing junk words,
+            and turning the relevant words into easier-to-work-with forms. Then I can transform the cleaned corpi into
+            word-document matrices for further analysis.</p>
 
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+      </div>
+      <div class="jp-InputArea jp-Cell-inputArea">
+        <div class="jp-InputPrompt jp-InputArea-prompt">
+        </div>
+        <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+          <h1 id="Cleaning-the-API-Corpi">Cleaning the API Corpi<a class="anchor-link"
+              href="#Cleaning-the-API-Corpi">&#182;</a></h1>
+          <p>I went through a couple of iterations of a pipeline to turn the NewsAPI and WorldNewsAPI documents into
+            cleaned corpi.
+            Initially, I made four pipelines, one for each API, and one using PorterStemmer with one using
+            WordNetLemmatizer. This was a massive waste of space, as I quickly realized I could place both the stemmed
+            and lemmed versions of the text into separate columns of a single .csv file.</p>
+          <p>I also realized that I was using the same basic algorithm to clean every text column in each of these APIs,
+            with the only distinction being the column name. Thus, I combined all of the API data into a single pipeline
+            which cleaned every text column and returned a stemmed/lemmed version of said columns. Then I was able to
+            combine these columns into complete cleaned corpi for each API dataset.</p>
+          <p>Here is that pipeline:</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+      </div>
+      <div class="jp-InputArea jp-Cell-inputArea">
+        <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+        <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+          <div class="CodeMirror cm-s-jupyter">
+            <div class=" highlight hl-ipython3">
+              <pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1">#Regular Expressions will come in handy here.</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="c1">#Importing the WordNetLemmatizer and the PorterStemmer from NLTK for stemming and lemming</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">'wordnet'</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">WordNetLemmatizer</span>
+<span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">PorterStemmer</span>
+
+<span class="n">news</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../data/newsapi_corpus_raw.csv'</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">world_news</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../data/worldnewsapi_corpus_raw.csv'</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">#Here I create some object for later. A porterStemmer, WordNetLemmatizer, and lastly a 'junk' regex which will help me remove garbage characters from the text.</span>
+<span class="n">wnl</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span>
+<span class="c1">#(This is a regex for anything that isn't alphanumeric)</span>
+<span class="n">junk</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">'[^a-zA-Z</span><span class="se">\\</span><span class="s1">d]'</span><span class="p">)</span>
+
+<span class="c1">#Split the text along white-space and remove junk, then lemmatize</span>
+<span class="k">def</span> <span class="nf">lemmatize</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="c1">#I tried splitting along a few differend regexes here, but ultimately the whitespace literal proved the best.</span>
+    <span class="n">word_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span><span class="n">text</span><span class="p">)</span>
+    <span class="c1">#This line removes all junk characters (anything non-alphanumeric) from each word in the list.</span>
+    <span class="n">word_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">junk</span><span class="p">,</span><span class="s1">''</span><span class="p">,</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">]</span>
+    <span class="n">word_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">wnl</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">]</span>
+    <span class="k">return</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span>
+<span class="n">v_lemm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">lemmatize</span><span class="p">)</span>
+
+<span class="c1">#Same process but with the PorterStemmer rather than the WordNetLemmatizer</span>
+<span class="k">def</span> <span class="nf">stem</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">word_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">word_list</span> <span class="o">=</span> <span class="n">word_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">junk</span><span class="p">,</span><span class="s1">''</span><span class="p">,</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">]</span>
+    <span class="n">word_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">ps</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">]</span>
+    <span class="k">return</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span>
+<span class="n">v_stem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">stem</span><span class="p">)</span>
+<span class="c1">#Fill nan values</span>
+<span class="n">news</span> <span class="o">=</span> <span class="n">news</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
+<span class="n">world_news</span> <span class="o">=</span> <span class="n">world_news</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
+
+<span class="c1"># I did this already, now commenting it out for ease of use for stemming.</span>
+
+<span class="c1">#Add stemmed and lemmed versions of News as columns</span>
+<span class="n">news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'title_s'</span><span class="p">]</span><span class="o">=</span><span class="n">v_stem</span><span class="p">(</span><span class="n">news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'title'</span><span class="p">])</span>
+<span class="n">news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'desc_s'</span><span class="p">]</span><span class="o">=</span><span class="n">v_stem</span><span class="p">(</span><span class="n">news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'description'</span><span class="p">])</span>
+<span class="n">news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'content_s'</span><span class="p">]</span><span class="o">=</span><span class="n">v_stem</span><span class="p">(</span><span class="n">news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'content'</span><span class="p">])</span>
+<span class="n">news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'title_l'</span><span class="p">]</span><span class="o">=</span><span class="n">v_lemm</span><span class="p">(</span><span class="n">news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'title'</span><span class="p">])</span>
+<span class="n">news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'desc_l'</span><span class="p">]</span><span class="o">=</span><span class="n">v_lemm</span><span class="p">(</span><span class="n">news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'description'</span><span class="p">])</span>
+<span class="n">news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'content_l'</span><span class="p">]</span><span class="o">=</span><span class="n">v_lemm</span><span class="p">(</span><span class="n">news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'content'</span><span class="p">])</span>
+
+<span class="c1">#Do the same for world_news</span>
+<span class="n">world_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'text_s'</span><span class="p">]</span><span class="o">=</span><span class="n">v_stem</span><span class="p">(</span><span class="n">world_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'text'</span><span class="p">])</span>
+<span class="n">world_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'text_l'</span><span class="p">]</span><span class="o">=</span><span class="n">v_lemm</span><span class="p">(</span><span class="n">world_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'text'</span><span class="p">])</span>
+<span class="n">world_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'title_s'</span><span class="p">]</span><span class="o">=</span><span class="n">v_stem</span><span class="p">(</span><span class="n">world_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'title'</span><span class="p">])</span>
+<span class="n">world_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'title_l'</span><span class="p">]</span><span class="o">=</span><span class="n">v_lemm</span><span class="p">(</span><span class="n">world_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'title'</span><span class="p">])</span>
+
+<span class="c1">#news.to_csv('../../data/newsapi_corpus_cleaned.csv',index=0)</span>
+<span class="c1">#world_news.to_csv('../../data/worldnewsapi_corpus_cleaned.csv',index=0)</span>
+<span class="n">news</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">world_news</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="jp-Cell-outputWrapper">
+      <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+      </div>
+
+
+      <div class="jp-OutputArea jp-Cell-outputArea">
+
+        <div class="jp-OutputArea-child">
+
+
+          <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+          <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+            <pre>[nltk_data] Downloading package wordnet to
+[nltk_data]     C:\Users\Owner\AppData\Roaming\nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+</pre>
+          </div>
+        </div>
+
+        <div class="jp-OutputArea-child">
+
+
+          <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[2]:</div>
+
+
+
+          <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult"
+            data-mime-type="text/html">
+            <div>
+              <style scoped>
+                .dataframe tbody tr th:only-of-type {
+                  vertical-align: middle;
+                }
+
+                .dataframe tbody tr th {
+                  vertical-align: top;
+                }
+
+                .dataframe thead th {
+                  text-align: right;
+                }
+              </style>
+              <table border="1" class="dataframe">
+                <thead>
+                  <tr style="text-align: right;">
+                    <th></th>
+                    <th>title</th>
+                    <th>text</th>
+                    <th>authors</th>
+                    <th>country</th>
+                    <th>sentiment</th>
+                    <th>url</th>
+                    <th>text_s</th>
+                    <th>text_l</th>
+                    <th>title_s</th>
+                    <th>title_l</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>0.0</th>
+                    <td>Russia’s Supreme Court effectively outlaws LGB...</td>
+                    <td>Menu Menu World U.S. Politics Sports Entertain...</td>
+                    <td>DASHA LITVINOVA</td>
+                    <td>us</td>
+                    <td>0.311</td>
+                    <td>https://apnews.com/article/russia-lgbtq-crackd...</td>
+                    <td>menu menu world us polit sport entertain busi ...</td>
+                    <td>Menu Menu World US Politics Sports Entertainme...</td>
+                    <td>russia suprem court effect outlaw lgbtq activ ...</td>
+                    <td>Russias Supreme Court effectively outlaw LGBTQ...</td>
+                  </tr>
+                  <tr>
+                    <th>1.0</th>
+                    <td>Where Do Trans Rights Stand in Taiwan After Sa...</td>
+                    <td>An estimated 5,000 people gathered in Ximendin...</td>
+                    <td>Daniel Yo-Ling</td>
+                    <td>us</td>
+                    <td>0.134</td>
+                    <td>https://thediplomat.com/2023/11/where-do-trans...</td>
+                    <td>an estim 5000 peopl gather in ximend on the ev...</td>
+                    <td>An estimated 5000 people gathered in Ximending...</td>
+                    <td>where do tran right stand in taiwan after same...</td>
+                    <td>Where Do Trans Rights Stand in Taiwan After Sa...</td>
+                  </tr>
+                  <tr>
+                    <th>2.0</th>
+                    <td>Transgender People&amp;#039;s Neurological Needs A...</td>
+                    <td>As a transgender neurologist, I advocate for t...</td>
+                    <td>Deneen Broadnax</td>
+                    <td>us</td>
+                    <td>0.12</td>
+                    <td>https://worldnewsera.com/news/science/transgen...</td>
+                    <td>as a transgend neurologist i advoc for the imp...</td>
+                    <td>As a transgender neurologist I advocate for th...</td>
+                    <td>transgend people039 neurolog need are be overl...</td>
+                    <td>Transgender People039s Neurological Needs Are ...</td>
+                  </tr>
+                  <tr>
+                    <th>3.0</th>
+                    <td>Class 10th, 12th Board Exams Forms: Transgende...</td>
+                    <td>After the Supreme Court recognised transgender...</td>
+                    <td>Deeksha Teri</td>
+                    <td>in</td>
+                    <td>0.06</td>
+                    <td>https://indianexpress.com/article/education/cl...</td>
+                    <td>after the suprem court recognis transgend peop...</td>
+                    <td>After the Supreme Court recognised transgender...</td>
+                    <td>class 10th 12th board exam form transgend stud...</td>
+                    <td>Class 10th 12th Board Exams Forms Transgender ...</td>
+                  </tr>
+                  <tr>
+                    <th>4.0</th>
+                    <td>Photos: Protesters squared off in downtown Ottawa</td>
+                    <td>Article content PHOTO GALLERY Thousands of peo...</td>
+                    <td>Lois Kirkup</td>
+                    <td>ca</td>
+                    <td>0.481</td>
+                    <td>https://ottawacitizen.com/news/local-news/phot...</td>
+                    <td>articl content photo galleri thousand of peopl...</td>
+                    <td>Article content PHOTO GALLERY Thousands of peo...</td>
+                    <td>photo protest squar off in downtown ottawa</td>
+                    <td>Photos Protesters squared off in downtown Ottawa</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+      </div>
+      <div class="jp-InputArea jp-Cell-inputArea">
+        <div class="jp-InputPrompt jp-InputArea-prompt">
+        </div>
+        <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+          <h1 id="Ground-News">Ground News<a class="anchor-link" href="#Ground-News">&#182;</a></h1>
+          <p>For this dataset, I wanted to do more than just stem and lem each word. I knew the source_text entries
+            contained a lot of junk words which came from advertisements, site descriptions, subscription requests, etc.
+            I wanted to remove as much of this junk text as I could while keeping the text relevant to the news story.
           </p>
-          <h1 id="This-Project's-Purpose">This Project's Purpose<a class="anchor-link"
-              href="#This-Project's-Purpose">&#182;</a></h1>
-          <p>While public opinion is sharply divided on the subject of Trans rights, it's often murky or unclear exactly
-            where the division is between the two sides. This analysis of News Articles with the key-word
-            <strong><em>transgender</em></strong> attempts to shed light on the events of the trans rights movement in
-            recent months, and the differing opinions thereof.
-          </p>
-          <h3 id="Citations">Citations<a class="anchor-link" href="#Citations">&#182;</a></h3>
-          <p>Alabama HB1: 2021: Regular session. LegiScan. (n.d.). <a
-              href="https://legiscan.com/AL/text/HB1/id/2215587">https://legiscan.com/AL/text/HB1/id/2215587</a></p>
-          <p>Parker, K. (2022, June 28). Americans’ complex views on gender identity and transgender issues. Pew
-            Research Center’s Social &amp; Demographic Trends Project. <a
-              href="https://www.pewresearch.org/social-trends/2022/06/28/americans-complex-views-on-gender-identity-and-transgender-issues/">https://www.pewresearch.org/social-trends/2022/06/28/americans-complex-views-on-gender-identity-and-transgender-issues/</a>
-          </p>
-          <p>Waters, E., &amp; Yacka-Bible, S. (n.d.). Lesbian, gay, bisexual, transgender, queer, and HIV-affected hate
-            ... <a
-              href="https://avp.org/wp-content/uploads/2017/08/NCAVP-A-Crisis-of-Hate-Final.pdf">https://avp.org/wp-content/uploads/2017/08/NCAVP-A-Crisis-of-Hate-Final.pdf</a>
-          </p>
+          <p>To do this, I took advantage of the fact that the source text retained its original order, and that I had a
+            <strong>title</strong> entry corresponding to each <strong>source_text</strong> entry. The plan was to
+            tokenize and lemmatize the title and corresponding source text entry, then only keep the words in the source
+            text which came in between the first and last word which matched a word in the title.</p>
+          <h3 id="Example:">Example:<a class="anchor-link" href="#Example:">&#182;</a></h3>
+          <p>Using the title</p>
+          <p><strong>'Greece Legalizes same-sex marriage'</strong></p>
+          <p>and this monster lemmatized source text:</p>
+
+          <pre><code>   "BBC HomepageSkip to contentAccessibility HelpYour accountHomeNewsSportEarthReelWorklifeTravelMore menuMore menuSearch BBCHomeNewsSportEarthReelWorklifeTravelCultureFutureMusicTVWeatherSoundsClose menuBBC NewsMenuHomeIsrael-Gaza warWar in UkraineClimateVideoWorldUS &amp; CanadaUKBusinessTechMoreScienceEntertainment &amp; ArtsHealthIn PicturesBBC VerifyWorld News TVNewsbeatWorldAfricaAsiaAustraliaEuropeLatin AmericaMiddle EastGreece legalises same-sex marriagePublished1 day agoShareclose panelShare pageCopy linkAbout sharingThis video can not be playedTo play this video you need to enable JavaScript in your browser.Media caption, Watch: Cheers in Athens as same-sex marriage becomes lawBy James GregoryBBC NewsGreece has become the first Christian Orthodox-majority country to legalise same-sex marriage.Same-sex couples will now also be legally allowed to adopt children after Thursday's 176-76 vote in parliament.Prime Minister Kyriakos Mitsotakis said the new law would ""boldly abolish a serious inequality"".But it has divided the country, with fierce resistance led by the powerful Orthodox Church. Its supporters held a protest rally in Athens.Many displayed banners, held crosses, read prayers and sang passages from the Bible in the capital's Syntagma Square.The head of the Orthodox Church, Archbishop Ieronymos, said the measure would ""corrupt the homeland's social cohesion"".The bill needed a simple majority to pass through the 300-member parliament.Mr Mitsotakis had championed the bill but required the support of opposition parties to get it over the line, with dozens of MPs from his centre-right governing party opposed. ""People who have been invisible will finally be made visible around us, and with them, many children will finally find their rightful place,"" the prime minister told parliament during a debate ahead of the vote. ""The reform makes the lives of several of our fellow citizens better, without taking away anything from the lives of the many.""Image source, Getty ImagesImage caption, Opponents of the legislature held a protest rally in front of the parliament building in AthensThe vote has been welcomed by LGBTQ organisations in Greece.""This is a historic moment,"" Stella Belia, the head of same-sex parents' group Rainbow Families, told Reuters news agency. ""This is a day of joy."" Fifteen of the European Union's 27 members have already legalised same-sex marriage. It is permitted in 35 countries worldwide.Greece has until now lagged behind some of its European neighbours, largely because of opposition from the Church. It is the first country in south-eastern Europe to have marriage equality.Related TopicsGreeceMarriageLGBTMore on this storyCheers in Athens as same-sex marriage becomes law. Video, 00:00:28Cheers in Athens as same-sex marriage becomes lawPublished1 day ago0:28Top StoriesLive. ‘Putin is responsible’ - Biden speaks out after report of Navalny’s deathTrump ordered to pay 354m in New York fraud casePublished10 hours agoTrump must pay 354m. How could he do it?Published2 hours agoFeaturesAlexei Navalny: What we know about reports of his deathNavalny’s life in 'Polar Wolf' remote penal colonyArrested and poisoned: See Navalny's moments of defiance. VideoArrested and poisoned: See Navalny's moments of defianceSatellite images show construction on Egypt-Gaza borderIs Russia about to win another victory in Ukraine?The Argentines backing a 'crazy' president's shock therapyMillions of donkeys killed each year to make medicineWeekly quiz: Who could join Sinéad in the Rock &amp; Roll Hall of Fame?The KGB spy who rubbed shoulders with French elite for decadesElsewhere on the BBCWhy Gen Z are dressing like Mob WivesThe world map created by a man who never left homeThe seedy underbelly of life coachingMost Read1Amy Schumer hits back at comments about her face2Two teenagers charged over Super Bowl parade shooting3Alexei Navalny: What we know about reports of his death4King's cancer may bring family closer, says Harry5Brian Wilson's family seeks conservatorship6Trump must pay 354m. How could he do it?7Satellite images show construction on Egypt-Gaza border8Fani Willis' dad testifies in Trump Georgia case9Democrats relieved as Manchin rules out White House bid10Biden condemns House recess without new Ukraine aidBBC News ServicesOn your mobileOn smart speakersGet news alertsContact BBC NewsHomeNewsSportEarthReelWorklifeTravelCultureFutureMusicTVWeatherSoundsTerms of UseAbout the BBCPrivacy PolicyCookiesAccessibility HelpParental GuidanceContact the BBCGet Personalised NewslettersWhy you can trust the BBCAdvertise with us© 2024 BBC. The BBC is not responsible for the content of external sites. Read about our approach to external linking."</code></pre>
+          <p>This algorithm will throw out a bunch of junk at the beginning and end, and only keep the bulk of the
+            article, which falls in between two instances of words which match their lemmatized cousins in the
+            corresponding <strong>title</strong> entry.</p>
+          <p><del>BBC HomepageSkip to contentAccessibility HelpYour accountHomeNewsSportEarthReelWorklifeTravelMore
+              menuMore menuSearch BBCHomeNewsSportEarthReelWorklifeTravelCultureFutureMusicTVWeatherSoundsClose menuBBC
+              NewsMenuHomeIsrael-Gaza warWar in UkraineClimateVideoWorldUS &amp;
+              CanadaUKBusinessTechMoreScienceEntertainment &amp; ArtsHealthIn PicturesBBC VerifyWorld News
+              TVNewsbeatWorldAfricaAsiaAustraliaEuropeLatin AmericaMiddle EastGreece</del></p>
+
+          <pre><code>  legalises same-sex marriagePublished1 day agoShareclose panelShare pageCopy linkAbout sharingThis video can not be playedTo play this video you need to enable JavaScript in your browser.Media caption, Watch: Cheers in Athens as same-sex marriage becomes lawBy James GregoryBBC NewsGreece has become the first Christian Orthodox-majority country to legalise same-sex marriage.Same-sex couples will now also be legally allowed to adopt children after Thursday's 176-76 vote in parliament.Prime Minister Kyriakos Mitsotakis said the new law would ""boldly abolish a serious inequality"".But it has divided the country, with fierce resistance led by the powerful Orthodox Church. Its supporters held a protest rally in Athens.Many displayed banners, held crosses, read prayers and sang passages from the Bible in the capital's Syntagma Square.The head of the Orthodox Church, Archbishop Ieronymos, said the measure would ""corrupt the homeland's social cohesion"".The bill needed a simple majority to pass through the 300-member parliament.Mr Mitsotakis had championed the bill but required the support of opposition parties to get it over the line, with dozens of MPs from his centre-right governing party opposed. ""People who have been invisible will finally be made visible around us, and with them, many children will finally find their rightful place,"" the prime minister told parliament during a debate ahead of the vote. ""The reform makes the lives of several of our fellow citizens better, without taking away anything from the lives of the many.""Image source, Getty ImagesImage caption, Opponents of the legislature held a protest rally in front of the parliament building in AthensThe vote has been welcomed by LGBTQ organisations in Greece.""This is a historic moment,"" Stella Belia, the head of same-sex parents' group Rainbow Families, told Reuters news agency. ""This is a day of joy."" Fifteen of the European Union's 27 members have already legalised same-sex marriage. It is permitted in 35 countries worldwide.Greece has until now lagged behind some of its European neighbours, largely because of opposition from the Church. It is the first country in south-eastern Europe to have marriage</code></pre>
+          <p><del>equality.Related TopicsGreeceMarriageLGBTMore on this storyCheers in Athens as same-sex marriage
+              becomes law. Video, 00:00:28Cheers in Athens as same-sex marriage becomes lawPublished1 day ago0:28Top
+              StoriesLive. ‘Putin is responsible’ - Biden speaks out after report of Navalny’s deathTrump ordered to pay
+              354m in New York fraud casePublished10 hours agoTrump must pay 354m. How could he do it?Published2 hours
+              agoFeaturesAlexei Navalny: What we know about reports of his deathNavalny’s life in 'Polar Wolf' remote
+              penal colonyArrested and poisoned: See Navalny's moments of defiance. VideoArrested and poisoned: See
+              Navalny's moments of defianceSatellite images show construction on Egypt-Gaza borderIs Russia about to win
+              another victory in Ukraine?The Argentines backing a 'crazy' president's shock therapyMillions of donkeys
+              killed each year to make medicineWeekly quiz: Who could join Sinéad in the Rock &amp; Roll Hall of
+              Fame?The KGB spy who rubbed shoulders with French elite for decadesElsewhere on the BBCWhy Gen Z are
+              dressing like Mob WivesThe world map created by a man who never left homeThe seedy underbelly of life
+              coachingMost Read1Amy Schumer hits back at comments about her face2Two teenagers charged over Super Bowl
+              parade shooting3Alexei Navalny: What we know about reports of his death4King's cancer may bring family
+              closer, says Harry5Brian Wilson's family seeks conservatorship6Trump must pay 354m. How could he do
+              it?7Satellite images show construction on Egypt-Gaza border8Fani Willis' dad testifies in Trump Georgia
+              case9Democrats relieved as Manchin rules out White House bid10Biden condemns House recess without new
+              Ukraine aidBBC News ServicesOn your mobileOn smart speakersGet news alertsContact BBC
+              NewsHomeNewsSportEarthReelWorklifeTravelCultureFutureMusicTVWeatherSoundsTerms of UseAbout the BBCPrivacy
+              PolicyCookiesAccessibility HelpParental GuidanceContact the BBCGet Personalised NewslettersWhy you can
+              trust the BBCAdvertise with us© 2024 BBC. The BBC is not responsible for the content of external sites.
+              Read about our approach to external linking."</del></p>
+          <p>Here was my final code:</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+      </div>
+      <div class="jp-InputArea jp-Cell-inputArea">
+        <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+        <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+          <div class="CodeMirror cm-s-jupyter">
+            <div class=" highlight hl-ipython3">
+              <pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">'wordnet'</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">WordNetLemmatizer</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+
+<span class="c1">#Here I'm cleaning the Ground News articles to form a cleaned corpus.</span>
+<span class="c1">#My main task here is using the Ground News summary for each article to remove </span>
+<span class="c1">#superfluous words from the article's source text.</span>
+<span class="c1">#My plan is:</span>
+<span class="c1">#1. Split the source text and summary into word lists and lemmatize them (while maintaining duplicates, stop words, and word order)</span>
+<span class="c1">#2. Remove all stop words from the summary word list</span>
+<span class="c1">#3. Find the first and last indices of words in the source text which match a word in the summary word list</span>
+<span class="c1">#4. Throw out all source text words which fall outside of those indices.</span>
+<span class="c1">#This should hopefully remove all of the ads which were displayed before and after the main story, while keeping the bulk of the main</span>
+<span class="c1">#story for each source text article.</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../data/groundnews_corpus_raw.csv'</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
+<span class="n">wnl</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
+<span class="n">junk</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">'[^a-zA-Z</span><span class="se">\\</span><span class="s1">d]'</span><span class="p">)</span>
+<span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">'english'</span><span class="p">))</span>
+
+<span class="c1">#I tried vectorizing separate functions for each step of this process, but pandas</span>
+<span class="c1">#and numpy don't like the intermediate state of having three columns of the dataframe</span>
+<span class="c1">#be columns with a list in each cell. So instead I'm combining all steps into one function which</span>
+<span class="c1">#will return the cleaned title, summary, and source text. Then I'll vectorize it and run it across the</span>
+<span class="c1">#data frame.</span>
+
+<span class="c1">#Helper function for lemmatizing a text and returning the lemmatized word list</span>
+<span class="k">def</span> <span class="nf">lemmatize</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">word_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">junk</span><span class="p">,</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">word_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">junk</span><span class="p">,</span><span class="s1">''</span><span class="p">,</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">]</span>
+    <span class="n">word_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">wnl</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">word_list</span>
+
+<span class="c1">#I tried filtering on the title as well as the summary, and filtering on the title gave me much better results.</span>
+<span class="k">def</span> <span class="nf">clean_source_text</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">s_t</span><span class="p">):</span>
+    <span class="c1">#Step 1</span>
+    <span class="n">t</span><span class="o">=</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">=</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">s_t</span><span class="o">=</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">s_t</span><span class="p">)</span>
+
+    <span class="c1">#Step 2</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">w</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
+    
+    <span class="c1">#Step 3</span>
+    <span class="n">t_in_s_t</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">s_t</span><span class="p">]</span>
+    <span class="c1"># s_in_s_t = [w in s for w in s_t]</span>
+    
+    <span class="n">title_matching_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">t_in_s_t</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="p">]</span>
+    <span class="c1"># summary_matching_indices = [i for i,x in enumerate(s_in_s_t) if x]</span>
+    
+    <span class="n">title</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="c1">#Step 4</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">title_matching_indices</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">source_text</span> <span class="o">=</span> <span class="n">s_t</span><span class="p">[</span><span class="n">title_matching_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">title_matching_indices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="c1"># elif len(summary_matching_indices)&gt;1:</span>
+    <span class="c1">#     source_text = s_t[summary_matching_indices[0]:summary_matching_indices[-1]]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">source_text</span> <span class="o">=</span> <span class="p">[</span><span class="s1">''</span><span class="p">]</span>
+    <span class="c1">#Printing out how many junk words were removed by this process for each entry in the corpus.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s_t</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">source_text</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">", "</span><span class="p">)</span>
+    
+    <span class="n">source_text</span> <span class="o">=</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">source_text</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">title</span><span class="p">,</span> <span class="n">summary</span><span class="p">,</span> <span class="n">source_text</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)):</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">'title'</span><span class="p">],</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">'summary'</span><span class="p">],</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">'source_text'</span><span class="p">]</span> <span class="o">=</span> <span class="n">clean_source_text</span><span class="p">(</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">'title'</span><span class="p">],</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">'summary'</span><span class="p">],</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s1">'source_text'</span><span class="p">])</span>
+
+<span class="c1">#df.to_csv('../../data/groundnews_corpus_cleaned.csv')</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="jp-Cell-outputWrapper">
+      <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+      </div>
+
+
+      <div class="jp-OutputArea jp-Cell-outputArea">
+
+        <div class="jp-OutputArea-child">
+
+
+          <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+          <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+            <pre>[nltk_data] Downloading package wordnet to
+[nltk_data]     C:\Users\Owner\AppData\Roaming\nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+</pre>
+          </div>
+        </div>
+
+        <div class="jp-OutputArea-child">
+
+
+          <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+          <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+            <pre>335, 221, 623, 1142, 1, 7, 492, 31, 449, 4, 322, 489, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 31, 1, 1, 2, 418, 161, 441, 1, 186, 1, 1, 1, 1, 13, 1, 0, 1, 1, 2, 1, 1, 4, 1, 1, 1, 1, 1, 1, 322, 0, 1, 31, 174, 1, 0, 0, 136, 97, 152, 52, 627, 1, 139, 321, 618, 39, 332, 239, 1, 1, 1, 14, 1, 1, 605, 1, 644, 3, 1, 3, 781, 1, 1, 1, 1, 1, 1, 12, 1, 1, 9, 151, 10, 1, 342, 1, 1, 1, 1, 1, 1, 1, 31, 15, 643, 1, 1, 1, 1, 1, 654, 7, 738, 1254, 1, 30, 1, 11, 4, 326, 13, 10, 161, 12, 1, 0, 10, 580, 469, 157, 291, 442, 450, 640, 1, 1, 52, 932, 808, 782, 1, 1, 1, 168, 51, 72, 763, 1, 1, 624, 1374, 327, 65, 1, 1048, 657, 1, 1, 1, 1, 67, 0, 321, 168, 691, 1, 1, 1, 1, 1, 1, 171, 1, 1, 1, 1, 1, 1, 1, 489, 1, 31, 1, 388, 1, 1, 143, 352, 0, 1, 462, 1, 170, 712, 493, 181, 400, 795, 1, 211, 2, 2, 2026, 1, 10, 1, 235, 257, 1280, 1, 1, 227, 576, 1, 1, 1, 72, 235, 223, 1, 1, 1, 171, 1, 135, 1, 1, 550, 126, 464, 256, 31, 387, 1, 1, 1, 1, 9, 10, 1, 1, 1, 1, 1, 1, 1, 1, 16, 176, 422, 190, 1, 487, 357, 100, 317, 349, 271, 124, 379, 1, 306, 505, 473, 811, 171, 1, 280, 1, 7, 1, 521, 120, 161, 429, 144, 182, 144, 1, 1, 11, 38, 1, 1, 1, 1, 1, 1, 1, 1, 1, 906, 1, 0, 1, 1, 1, 1, 130, 822, 2, 612, 248, 1, 1, 536, 2, 1, 213, 1, 1, 1, 1, 63, 146, 145, 206, 257, 236, 619, 43, 1, 274, 1, 1, 1, 120, 31, 1, 131, 237, 0, 255, 1, 2, 1, 22, 571, 1, 1064, 13, 1, 1, 1, 10, </pre>
+          </div>
+        </div>
+
+        <div class="jp-OutputArea-child">
+
+
+          <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+
+
+
+          <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult"
+            data-mime-type="text/html">
+            <div>
+              <style scoped>
+                .dataframe tbody tr th:only-of-type {
+                  vertical-align: middle;
+                }
+
+                .dataframe tbody tr th {
+                  vertical-align: top;
+                }
+
+                .dataframe thead th {
+                  text-align: right;
+                }
+              </style>
+              <table border="1" class="dataframe">
+                <thead>
+                  <tr style="text-align: right;">
+                    <th></th>
+                    <th>title</th>
+                    <th>summary</th>
+                    <th>bias</th>
+                    <th>factuality</th>
+                    <th>owner</th>
+                    <th>source</th>
+                    <th>owner_type</th>
+                    <th>source_text</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>0</th>
+                    <td>Greece legalises sex marriage</td>
+                    <td>Greece ha become the first Christian Orthodox ...</td>
+                    <td>Center</td>
+                    <td>High Factuality</td>
+                    <td>Government of the United Kingdom</td>
+                    <td>https://www.bbc.co.uk/news/world-europe-683101...</td>
+                    <td>Government</td>
+                    <td>legalises same sex marriagePublished1 day agoS...</td>
+                  </tr>
+                  <tr>
+                    <th>1</th>
+                    <td>Greece becomes first Orthodox Christian countr...</td>
+                    <td>Lawmakers in the 300 seat parliament voted for...</td>
+                    <td>Lean Left</td>
+                    <td>Mixed Factuality</td>
+                    <td>Scott Trust Limited</td>
+                    <td>https://www.theguardian.com/world/2024/feb/15/...</td>
+                    <td>Independent</td>
+                    <td>becomes first Christian Orthodox country to le...</td>
+                  </tr>
+                  <tr>
+                    <th>2</th>
+                    <td>Greece legalises sex marriage landmark change</td>
+                    <td>The law give same sex couple the right to wed ...</td>
+                    <td>Lean Left</td>
+                    <td>High Factuality</td>
+                    <td>The Hindu Group</td>
+                    <td>https://www.thehindu.com/news/international/gr...</td>
+                    <td>Independent</td>
+                    <td>Greece legalises same sex marriage in landmark...</td>
+                  </tr>
+                  <tr>
+                    <th>3</th>
+                    <td>Greece becomes first Orthodox Christian countr...</td>
+                    <td>Greece ha become the first Orthodox Christian ...</td>
+                    <td>Center</td>
+                    <td>High Factuality</td>
+                    <td>Bell Media</td>
+                    <td>https://www.ctvnews.ca/world/greece-becomes-fi...</td>
+                    <td>Media Conglomerate</td>
+                    <td>Greece becomes first Orthodox Christian countr...</td>
+                  </tr>
+                  <tr>
+                    <th>4</th>
+                    <td>Greece legalises sex marriage another Orthod...</td>
+                    <td>Greece ha become the first majority Orthodox C...</td>
+                    <td>Lean Left</td>
+                    <td>Mixed Factuality</td>
+                    <td>Evgeny Lebedev</td>
+                    <td>https://www.independent.co.uk/news/world/europ...</td>
+                    <td>Individual</td>
+                    <td>Jump to contentUS EditionChangeUK EditionAsia...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+      </div>
+      <div class="jp-InputArea jp-Cell-inputArea">
+        <div class="jp-InputPrompt jp-InputArea-prompt">
+        </div>
+        <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+          <p>As you can see, this method removed a fair number of 'junk' from many of these source_text entries. For
+            many entries, it barely removed anything, but that's okay. The hope is that as a result of this cleaning,
+            the quality of the remaining source text data will go up significantly, and we can use it for further
+            analysis.</p>
+          <p>After cleaning the source_text with the lemmatized version of the titles, I decide to create a stemmed
+            version in case that might prove better for creating word-document matrices. Here was my code:</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+      </div>
+      <div class="jp-InputArea jp-Cell-inputArea">
+        <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+        <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+          <div class="CodeMirror cm-s-jupyter">
+            <div class=" highlight hl-ipython3">
+              <pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">PorterStemmer</span>
+
+<span class="n">ps</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span>
+<span class="n">ground_news</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../data/groundnews_corpus_cleaned.csv'</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
+<span class="n">junk</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">'[^a-zA-Z</span><span class="se">\\</span><span class="s1">d]'</span><span class="p">)</span>
+
+<span class="c1">#slice the text into words and stem each word</span>
+<span class="k">def</span> <span class="nf">stem</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">word_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">word_list</span> <span class="o">=</span> <span class="n">word_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">junk</span><span class="p">,</span><span class="s1">''</span><span class="p">,</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">]</span>
+    <span class="n">word_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">ps</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span><span class="p">]</span>
+    <span class="k">return</span> <span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span>
+
+<span class="n">v_stem</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">stem</span><span class="p">)</span>
+
+<span class="c1">#Add columns for stemmed version of title, summary, and source text.</span>
+<span class="n">ground_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'title_s'</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_stem</span><span class="p">(</span><span class="n">ground_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'title'</span><span class="p">])</span>
+<span class="n">ground_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'summary_s'</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_stem</span><span class="p">(</span><span class="n">ground_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'summary'</span><span class="p">])</span>
+<span class="n">ground_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'source_text_s'</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_stem</span><span class="p">(</span><span class="n">ground_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">'source_text'</span><span class="p">])</span>
+
+<span class="c1">#ground_news.to_csv('../../data/groundnews_corpus_cleaned.csv')</span>
+<span class="n">ground_news</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="jp-Cell-outputWrapper">
+      <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+      </div>
+
+
+      <div class="jp-OutputArea jp-Cell-outputArea">
+
+        <div class="jp-OutputArea-child">
+
+
+          <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+
+
+
+          <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult"
+            data-mime-type="text/html">
+            <div>
+              <style scoped>
+                .dataframe tbody tr th:only-of-type {
+                  vertical-align: middle;
+                }
+
+                .dataframe tbody tr th {
+                  vertical-align: top;
+                }
+
+                .dataframe thead th {
+                  text-align: right;
+                }
+              </style>
+              <table border="1" class="dataframe">
+                <thead>
+                  <tr style="text-align: right;">
+                    <th></th>
+                    <th>title</th>
+                    <th>summary</th>
+                    <th>bias</th>
+                    <th>factuality</th>
+                    <th>owner</th>
+                    <th>source</th>
+                    <th>owner_type</th>
+                    <th>source_text</th>
+                    <th>title_s</th>
+                    <th>summary_s</th>
+                    <th>source_text_s</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>0</th>
+                    <td>Greece legalises sex marriage</td>
+                    <td>Greece ha become the first Christian Orthodox ...</td>
+                    <td>Center</td>
+                    <td>High Factuality</td>
+                    <td>Government of the United Kingdom</td>
+                    <td>https://www.bbc.co.uk/news/world-europe-683101...</td>
+                    <td>Government</td>
+                    <td>legalises same sex marriagePublished1 day agoS...</td>
+                    <td>greec legalis sex marriag</td>
+                    <td>greec ha becom the first christian orthodox ma...</td>
+                    <td>legalis same sex marriagepublished1 day agosha...</td>
+                  </tr>
+                  <tr>
+                    <th>1</th>
+                    <td>Greece becomes first Orthodox Christian countr...</td>
+                    <td>Lawmakers in the 300 seat parliament voted for...</td>
+                    <td>Lean Left</td>
+                    <td>Mixed Factuality</td>
+                    <td>Scott Trust Limited</td>
+                    <td>https://www.theguardian.com/world/2024/feb/15/...</td>
+                    <td>Independent</td>
+                    <td>becomes first Christian Orthodox country to le...</td>
+                    <td>greec becom first orthodox christian countri l...</td>
+                    <td>lawmak in the 300 seat parliament vote for the...</td>
+                    <td>becom first christian orthodox countri to lega...</td>
+                  </tr>
+                  <tr>
+                    <th>2</th>
+                    <td>Greece legalises sex marriage landmark change</td>
+                    <td>The law give same sex couple the right to wed ...</td>
+                    <td>Lean Left</td>
+                    <td>High Factuality</td>
+                    <td>The Hindu Group</td>
+                    <td>https://www.thehindu.com/news/international/gr...</td>
+                    <td>Independent</td>
+                    <td>Greece legalises same sex marriage in landmark...</td>
+                    <td>greec legalis sex marriag landmark chang</td>
+                    <td>the law give same sex coupl the right to wed a...</td>
+                    <td>greec legalis same sex marriag in landmark cha...</td>
+                  </tr>
+                  <tr>
+                    <th>3</th>
+                    <td>Greece becomes first Orthodox Christian countr...</td>
+                    <td>Greece ha become the first Orthodox Christian ...</td>
+                    <td>Center</td>
+                    <td>High Factuality</td>
+                    <td>Bell Media</td>
+                    <td>https://www.ctvnews.ca/world/greece-becomes-fi...</td>
+                    <td>Media Conglomerate</td>
+                    <td>Greece becomes first Orthodox Christian countr...</td>
+                    <td>greec becom first orthodox christian countri l...</td>
+                    <td>greec ha becom the first orthodox christian co...</td>
+                    <td>greec becom first orthodox christian countri t...</td>
+                  </tr>
+                  <tr>
+                    <th>4</th>
+                    <td>Greece legalises sex marriage another Orthod...</td>
+                    <td>Greece ha become the first majority Orthodox C...</td>
+                    <td>Lean Left</td>
+                    <td>Mixed Factuality</td>
+                    <td>Evgeny Lebedev</td>
+                    <td>https://www.independent.co.uk/news/world/europ...</td>
+                    <td>Individual</td>
+                    <td>Jump to contentUS EditionChangeUK EditionAsia...</td>
+                    <td>greec legalis sex marriag anoth orthodox chr...</td>
+                    <td>greec ha becom the first major orthodox christ...</td>
+                    <td>jump to contentu editionchangeuk editionasia ...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+      </div>
+      <div class="jp-InputArea jp-Cell-inputArea">
+        <div class="jp-InputPrompt jp-InputArea-prompt">
+        </div>
+        <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+          <h3 id="And-with-that,-I-had-cleaned-corpuses!-Now-to-create-some-word-document-matrices...">And with that, I
+            had cleaned corpuses! Now to create some word-document matrices...<a class="anchor-link"
+              href="#And-with-that,-I-had-cleaned-corpuses!-Now-to-create-some-word-document-matrices...">&#182;</a>
+          </h3>
+          <h1 id="WDMS">WDMS<a class="anchor-link" href="#WDMS">&#182;</a></h1>
+          <p>For this stage of cleaning, I might have gotten a bit overzealous. There were so many options for
+            customization when creating a word-document matrix that I really wasn't sure which I should use. The choices
+            to consider included:</p>
+          <ol>
+            <li>Which text column from each corpus should I use (title, summary, source text)?</li>
+            <li>Stemmed or lemmatized versions of the text?</li>
+            <li>Should I remove stop-words?</li>
+            <li>Should I use CountVectorizer or TfidfVectorizer?</li>
+            <li>How many words should I count as 1 token? (i.e. which value of <em>n</em> for n-grams should I be
+              using?)</li>
+          </ol>
+          <p>Considering all of these options, I realized I wouldn't know the correct answer to any of them unless I
+            came to that answer through trial an error. So I decided to use pretty much all options. This resulted in me
+            creating not 1, but <strong><em>20</em></strong> word-document matrices, each stored in their own special
+            location within the now vast <code>/data/wdms</code> folder tree. I eventually settled on creating one WDM
+            for each text/title column of each API, with stemming/lemming, and count/tfidf.</p>
+          <p>Here was my code:</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+      </div>
+      <div class="jp-InputArea jp-Cell-inputArea">
+        <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+        <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+          <div class="CodeMirror cm-s-jupyter">
+            <div class=" highlight hl-ipython3">
+              <pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+
+<span class="n">news</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../data/newsapi_corpus_cleaned.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
+<span class="n">world_news</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../data/worldnewsapi_corpus_cleaned.csv'</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
+<span class="n">ground_news</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../data/groundnews_corpus_cleaned.csv'</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
+
+
+<span class="c1">#Extract the metadata, we'll add it back in later</span>
+<span class="n">news_metadata</span> <span class="o">=</span> <span class="n">news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,(</span><span class="s1">'author'</span><span class="p">,</span><span class="s1">'publishedAt'</span><span class="p">,</span><span class="s1">'source'</span><span class="p">,</span><span class="s1">'url'</span><span class="p">,</span><span class="s1">'urlToImage'</span><span class="p">)]</span>
+<span class="n">world_news_metadata</span> <span class="o">=</span> <span class="n">world_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,(</span><span class="s1">'authors'</span><span class="p">,</span><span class="s1">'country'</span><span class="p">,</span><span class="s1">'sentiment'</span><span class="p">,</span><span class="s1">'url'</span><span class="p">)]</span>
+<span class="n">ground_news_metadata</span> <span class="o">=</span> <span class="n">ground_news</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,(</span><span class="s1">'bias'</span><span class="p">,</span><span class="s1">'factuality'</span><span class="p">,</span><span class="s1">'owner'</span><span class="p">,</span><span class="s1">'source'</span><span class="p">,</span><span class="s1">'owner_type'</span><span class="p">)]</span>
+
+
+<span class="n">cv</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">'english'</span><span class="p">)</span>
+<span class="n">cv_2</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">'english'</span><span class="p">,</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">tv</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">'english'</span><span class="p">)</span>
+<span class="n">tv_2</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">'english'</span><span class="p">,</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1">#This function transforms the text into a word-document matrix containing all words</span>
+<span class="c1">#which occur at least twice (this is to cut down on size, under the assumption that the words which occur</span>
+<span class="c1">#once are more trouble than they're worth), and sorts the matrix based on frequency.</span>
+<span class="k">def</span> <span class="nf">create_wdm</span><span class="p">(</span><span class="n">series</span><span class="p">,</span><span class="n">metadata</span><span class="p">,</span><span class="n">cv</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">wdm</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+    <span class="n">wdm_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">wdm</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span><span class="n">columns</span><span class="o">=</span><span class="n">cv</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">())</span>
+    <span class="n">wdm_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'sum'</span><span class="p">]</span> <span class="o">=</span> <span class="n">wdm_df</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="c1">#Filter for words with a minimum frequency. Cuts down on junk and size</span>
+    <span class="n">wdm_df</span> <span class="o">=</span> <span class="n">wdm_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="n">wdm_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'sum'</span><span class="p">]</span><span class="o">&gt;</span><span class="n">n</span><span class="p">]</span>
+    <span class="c1">#filter for strings greater than a certain length. Cuts out some silliness.</span>
+    <span class="n">wdm_df</span> <span class="o">=</span> <span class="n">wdm_df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="sa">r</span><span class="s1">'^[a-zA-Z]{3,}$'</span><span class="p">)</span>
+    <span class="n">wdm_df</span> <span class="o">=</span> <span class="n">wdm_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">'sum'</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">wdm_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">metadata</span><span class="p">,</span><span class="n">wdm_df</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">join</span><span class="o">=</span><span class="s1">'inner'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wdm_df</span>
+
+<span class="c1">#Create the WDMs for News. Altering min number of occurances to keep the size of larger WDMs in check.</span>
+<span class="c1"># news_title_l_cv = create_wdm(news['title_l'], news_metadata, cv, 3)</span>
+<span class="c1"># news_desc_l_cv = create_wdm(news['desc_l'], news_metadata, cv, 3)</span>
+<span class="c1"># news_content_l_cv = create_wdm(news['content_l'], news_metadata, cv, 3)</span>
+<span class="c1"># news_title_l_tv = create_wdm(news['title_l'], news_metadata, tv, 3)</span>
+<span class="c1"># news_desc_l_tv = create_wdm(news['desc_l'], news_metadata, tv, 3)</span>
+<span class="c1"># news_content_l_tv = create_wdm(news['content_l'], news_metadata, tv, 3)</span>
+
+<span class="c1"># news_title_s_cv = create_wdm(news['title_s'], news_metadata, cv, 3)</span>
+<span class="c1"># news_desc_s_cv = create_wdm(news['desc_s'], news_metadata, cv, 3)</span>
+<span class="c1"># news_content_s_cv = create_wdm(news['content_s'], news_metadata, cv, 3)</span>
+<span class="c1"># news_title_s_tv = create_wdm(news['title_s'], news_metadata, tv, 3)</span>
+<span class="c1"># news_desc_s_tv = create_wdm(news['desc_s'], news_metadata, tv, 3)</span>
+<span class="c1"># news_content_s_tv = create_wdm(news['content_s'], news_metadata, tv, 3)</span>
+
+
+<span class="c1">#Create the WDMs for World News</span>
+<span class="c1"># world_news_title_s_cv = create_wdm(world_news['title_s'], world_news_metadata, cv, 6)</span>
+<span class="c1"># world_news_text_s_cv = create_wdm(world_news['text_s'], world_news_metadata, cv, 15)</span>
+<span class="c1"># world_news_title_s_tv = create_wdm(world_news['title_s'], world_news_metadata, tv, 6)</span>
+<span class="c1"># world_news_text_s_tv = create_wdm(world_news['text_s'], world_news_metadata, tv, 15)</span>
+
+<span class="c1"># world_news_title_l_cv = create_wdm(world_news['title_l'], world_news_metadata, cv, 6)</span>
+<span class="c1"># world_news_text_l_cv = create_wdm(world_news['text_l'], world_news_metadata, cv, 15)</span>
+<span class="c1"># world_news_title_l_tv = create_wdm(world_news['title_l'], world_news_metadata, tv, 6)</span>
+<span class="c1"># world_news_text_l_tv = create_wdm(world_news['text_l'], world_news_metadata, tv, 15)</span>
+
+<span class="c1">#Create the WDMs for Ground News</span>
+
+<span class="n">ground_news_title_l_cv</span> <span class="o">=</span> <span class="n">create_wdm</span><span class="p">(</span><span class="n">ground_news</span><span class="p">[</span><span class="s1">'title'</span><span class="p">],</span> <span class="n">ground_news_metadata</span><span class="p">,</span> <span class="n">cv</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1"># ground_news_title_l_tv = create_wdm(ground_news['title'], ground_news_metadata, tv, 3)</span>
+<span class="c1"># ground_news_title_s_cv = create_wdm(ground_news['title_s'], ground_news_metadata, cv, 3)</span>
+<span class="c1"># ground_news_title_s_tv = create_wdm(ground_news['title_s'], ground_news_metadata, tv, 3)</span>
+
+<span class="c1"># ground_news_summary_l_cv = create_wdm(ground_news['summary'], ground_news_metadata, cv, 3)</span>
+<span class="c1"># ground_news_summary_l_tv = create_wdm(ground_news['summary'], ground_news_metadata, tv, 3)</span>
+<span class="c1"># ground_news_summary_s_cv = create_wdm(ground_news['summary_s'], ground_news_metadata, cv, 3)</span>
+<span class="c1"># ground_news_summary_s_tv = create_wdm(ground_news['summary_s'], ground_news_metadata, tv, 3)</span>
+
+<span class="c1"># ground_news_source_text_l_cv = create_wdm(ground_news['source_text'], ground_news_metadata, cv, 3)</span>
+<span class="c1"># ground_news_source_text_l_tv = create_wdm(ground_news['source_text'], ground_news_metadata, tv, 3)</span>
+<span class="c1"># ground_news_source_text_s_cv = create_wdm(ground_news['source_text_s'], ground_news_metadata, cv, 3)</span>
+<span class="c1"># ground_news_source_text_s_tv = create_wdm(ground_news['source_text_s'], ground_news_metadata, tv, 3)</span>
+
+<span class="c1">#Saving WDMs to csv.</span>
+<span class="c1"># news_title_s_cv.to_csv('../../data/wdms/count/newsapi/stemmed/title.csv')</span>
+<span class="c1"># news_desc_s_cv.to_csv('../../data/wdms/count/newsapi/stemmed/desc.csv')</span>
+<span class="c1"># news_content_s_cv.to_csv('../../data/wdms/count/newsapi/stemmed/content.csv')</span>
+<span class="c1"># news_title_s_tv.to_csv('../../data/wdms/tfidf/newsapi/stemmed/title.csv')</span>
+<span class="c1"># news_desc_s_tv.to_csv('../../data/wdms/tfidf/newsapi/stemmed/desc.csv')</span>
+<span class="c1"># news_content_s_tv.to_csv('../../data/wdms/tfidf/newsapi/stemmed/content.csv')</span>
+
+<span class="c1"># news_title_l_cv.to_csv('../../data/wdms/count/newsapi/lemmed/title.csv')</span>
+<span class="c1"># news_desc_l_cv.to_csv('../../data/wdms/count/newsapi/lemmed/desc.csv')</span>
+<span class="c1"># news_content_l_cv.to_csv('../../data/wdms/count/newsapi/lemmed/content.csv')</span>
+<span class="c1"># news_title_l_tv.to_csv('../../data/wdms/tfidf/newsapi/lemmed/title.csv')</span>
+<span class="c1"># news_desc_l_tv.to_csv('../../data/wdms/tfidf/newsapi/lemmed/desc.csv')</span>
+<span class="c1"># news_content_l_tv.to_csv('../../data/wdms/tfidf/newsapi/lemmed/content.csv')</span>
+
+
+<span class="c1"># world_news_title_s_cv.to_csv('../../data/wdms/count/worldnewsapi/stemmed/title.csv')</span>
+<span class="c1"># world_news_text_s_cv.to_csv('../../data/wdms/count/worldnewsapi/stemmed/text.csv')</span>
+<span class="c1"># world_news_title_l_cv.to_csv('../../data/wdms/count/worldnewsapi/lemmed/title.csv')</span>
+<span class="c1"># world_news_text_l_cv.to_csv('../../data/wdms/count/worldnewsapi/lemmed/text.csv')</span>
+
+<span class="c1"># world_news_title_s_cv.to_csv('../../data/wdms/tfidf/worldnewsapi/stemmed/title.csv')</span>
+<span class="c1"># world_news_text_s_cv.to_csv('../../data/wdms/tfidf/worldnewsapi/stemmed/text.csv')</span>
+<span class="c1"># world_news_title_l_cv.to_csv('../../data/wdms/tfidf/worldnewsapi/lemmed/title.csv')</span>
+<span class="c1"># world_news_text_l_cv.to_csv('../../data/wdms/tfidf/worldnewsapi/lemmed/title.csv')</span>
+
+
+<span class="c1"># ground_news_title_s_cv.to_csv('../../data/wdms/count/groundnews/stemmed/title.csv')</span>
+<span class="c1"># ground_news_summary_s_cv.to_csv('../../data/wdms/count/groundnews/stemmed/summ.csv')</span>
+<span class="c1"># ground_news_source_text_s_cv.to_csv('../../data/wdms/count/groundnews/stemmed/source.csv')</span>
+<span class="c1"># ground_news_title_s_tv.to_csv('../../data/wdms/tfidf/groundnews/stemmed/title.csv')</span>
+<span class="c1"># ground_news_summary_s_tv.to_csv('../../data/wdms/tfidf/groundnews/stemmed/summ.csv')</span>
+<span class="c1"># ground_news_source_text_s_tv.to_csv('../../data/wdms/tfidf/groundnews/stemmed/source.csv')</span>
+
+<span class="c1"># ground_news_title_l_cv.to_csv('../../data/wdms/count/groundnews/lemmed/title.csv')</span>
+<span class="c1"># ground_news_summary_l_cv.to_csv('../../data/wdms/count/groundnews/lemmed/summ.csv')</span>
+<span class="c1"># ground_news_source_text_l_cv.to_csv('../../data/wdms/count/groundnews/lemmed/source.csv')</span>
+<span class="c1"># ground_news_title_l_tv.to_csv('../../data/wdms/tfidf/groundnews/lemmed/title.csv')</span>
+<span class="c1"># ground_news_summary_l_tv.to_csv('../../data/wdms/tfidf/groundnews/lemmed/summ.csv')</span>
+<span class="c1"># ground_news_source_text_l_tv.to_csv('../../data/wdms/tfidf/groundnews/lemmed/source.csv')</span>
+
+<span class="n">ground_news_title_l_cv</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="jp-Cell-outputWrapper">
+      <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+      </div>
+
+
+      <div class="jp-OutputArea jp-Cell-outputArea">
+
+        <div class="jp-OutputArea-child">
+
+
+          <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+
+
+
+          <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult"
+            data-mime-type="text/html">
+            <div>
+              <style scoped>
+                .dataframe tbody tr th:only-of-type {
+                  vertical-align: middle;
+                }
+
+                .dataframe tbody tr th {
+                  vertical-align: top;
+                }
+
+                .dataframe thead th {
+                  text-align: right;
+                }
+              </style>
+              <table border="1" class="dataframe">
+                <thead>
+                  <tr style="text-align: right;">
+                    <th></th>
+                    <th>bias</th>
+                    <th>factuality</th>
+                    <th>owner</th>
+                    <th>source</th>
+                    <th>owner_type</th>
+                    <th>transgender</th>
+                    <th>trans</th>
+                    <th>gender</th>
+                    <th>lgbtq</th>
+                    <th>sex</th>
+                    <th>...</th>
+                    <th>program</th>
+                    <th>horrendous</th>
+                    <th>headline</th>
+                    <th>hamilton</th>
+                    <th>sue</th>
+                    <th>criticize</th>
+                    <th>surfer</th>
+                    <th>create</th>
+                    <th>target</th>
+                    <th>abusing</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>0</th>
+                    <td>Center</td>
+                    <td>High Factuality</td>
+                    <td>Government of the United Kingdom</td>
+                    <td>https://www.bbc.co.uk/news/world-europe-683101...</td>
+                    <td>Government</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>...</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <th>1</th>
+                    <td>Lean Left</td>
+                    <td>Mixed Factuality</td>
+                    <td>Scott Trust Limited</td>
+                    <td>https://www.theguardian.com/world/2024/feb/15/...</td>
+                    <td>Independent</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>...</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <th>2</th>
+                    <td>Lean Left</td>
+                    <td>High Factuality</td>
+                    <td>The Hindu Group</td>
+                    <td>https://www.thehindu.com/news/international/gr...</td>
+                    <td>Independent</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>...</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <th>3</th>
+                    <td>Center</td>
+                    <td>High Factuality</td>
+                    <td>Bell Media</td>
+                    <td>https://www.ctvnews.ca/world/greece-becomes-fi...</td>
+                    <td>Media Conglomerate</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>...</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <th>4</th>
+                    <td>Lean Left</td>
+                    <td>Mixed Factuality</td>
+                    <td>Evgeny Lebedev</td>
+                    <td>https://www.independent.co.uk/news/world/europ...</td>
+                    <td>Individual</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>...</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>5 rows × 258 columns</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+    <div class="jp-Cell-inputWrapper">
+      <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+      </div>
+      <div class="jp-InputArea jp-Cell-inputArea">
+        <div class="jp-InputPrompt jp-InputArea-prompt">
+        </div>
+        <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+          <p>I'm breaking with tradition here and only showing the output for the creation of one of the many
+            word-document matrices. Of all the code I've showed off so far, this program had the highest preponderance
+            to cause memory crashes, so for demonstration purposes I'm going to keep it light.</p>
+          <p>Essentially, I used the various vectorizers to create word-document matrices, then organized those matrices
+            based on word frequency, and used a minimum frequency cut-off to remove junk words that only appeared once
+            or twice. I always removed stopwords, after finding that not removing stop-words resulted in a lot of
+            unnecessary junk at the top of my WDMs. I'm also sticking with <em>n=1</em> for the purposes of n-grams for
+            now, because with <em>n=2</em> this function often resulted in a memory crash.</p>
+          <p>The resulting WDMs are going to form the basis for further analysis, which you can check out in the
+            exploratory analysis tab.</p>
 
         </div>
       </div>
