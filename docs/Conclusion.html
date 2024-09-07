@@ -7503,11 +7503,39 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">¶</a></h1><p>With text mining and analysis tools, I've learned a lot about the cultural footprint of the <em>transgender</em> topic in America. The ability to translate the WDMs into wordclouds gave me a powerful tool for capturing the cultural zeitgeist relating to the <em>transgender</em> topic. Combining this tool with other forms of analysis, like clustering, topic modelling, and supervized learning models allowed me to look at specific topics, authors, and sentiment and visualize the content of those articles.</p>
-<h2 id="Takeaways-about-the-Transgender-Cultural-Footprint">Takeaways about the Transgender Cultural Footprint<a class="anchor-link" href="#Takeaways-about-the-Transgender-Cultural-Footprint">¶</a></h2><h3 id="Words-associated-with-the-Transgender-topic">Words associated with the Transgender topic<a class="anchor-link" href="#Words-associated-with-the-Transgender-topic">¶</a></h3><p>WordClouds turned out to be an incredibly helpful tool for summarizing and visualizing the vast corpi of news articles relating to the 
-transgender topic. Of these, I think the <strong>WorldNewsAPI</strong> Title-based wordcloud is the most aesthetic summation of the cultural understanding of <em>transgender</em>. There's a variety of events and issues surrounding the topic which writers have covered in the past year, giving the viewer a good understanding of the various topics covered in the news, as well as how much each topic was mentioned.</p>
-<p>There are a few proper nouns referencing specific events, such as <em>brianna</em> and <em>ohio</em>, relating to two dominant stories related to transgender individuals. The first, the horrific killing of transgender teenager Brianna Ghey, exemplifies the disturbingly high rate of violence against transgender women, an issue relating to transgender rights that should not be ignored. The other proper noun, <em>ohio</em>, actually refers to a law restricting so-called <em>gender-affirming</em> care (noteably, <em>genderaffirming</em> is another dominant word in this wordcloud), a legal precedent which highlights a nation-wide battle-ground relating to transgender rights and priveleges: What kind of medical care transgender minors should be allowed to receive. Honestly, pretty much every major topic falling under the umbrella of <em>transgender</em> is present in this wordcloud. <strong>school</strong> refers to both the ohio bill and a florida bathroom bill aimin to restrict transgender students to restrooms corresponding to the gender they were assigned at birth. <strong>sport</strong> and <strong>athlere</strong> refer to various controversies surrounding admission into athletic programs, while <strong>law</strong> and <strong>judge</strong> reflect the legal disputes currently going in involving transgender individuals. Interestingly enough, <strong>woman</strong> is almost as common as <strong>gender</strong> in these articles, while <strong>man</strong> is nowhere to be seen on the wordcloud. This reflects a trend in <em>transgender</em> news: transgender women (male-to-female transition) are almost exclusively mentioned in any context. This trend is not merely bias in the news, but seems to reflect a deep cultural discomfort specifically with a male-to-female gender transition. As mentioned in the introduction, transgender <em>women</em> receive a disproportionate share of violence directed towards transgender indiviuals, while <em>black</em> transgender women receive and even more disproportionate share (Brianna Ghey, murdered at age 16, was a transgender woman). But I digress...</p>
-<h3 id="Sub-topics-and-Categories-within-the-Transgender-topic">Sub-topics and Categories within the Transgender topic<a class="anchor-link" href="#Sub-topics-and-Categories-within-the-Transgender-topic">¶</a></h3><p>Through the use of clustering and LDA, the transgender news articles were separated into groups, and sub-divided into topics and categories. These categories paint a cleaner picture of the topics of interest relating to <em>transgender</em> in the news. LDA specifically created excellent topical sub-divisions within the articles, with topics clearly corresponding to a few key issues in the <em>transgender</em> topic.</p>
+<h1 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">¶</a></h1><p>With text mining and analysis tools, I've learned a lot about the cultural footprint of the <em>transgender</em> topic in America. 
+  The ability to translate the WDMs into wordclouds gave me a powerful tool for capturing the cultural zeitgeist relating to the 
+  <em>transgender</em> topic. Combining this tool with other forms of analysis, like clustering, topic modelling, and supervized learning models allowed 
+  me to look at specific topics, authors, and sentiment and visualize the content of those articles.</p>
+<h2 id="Takeaways-about-the-Transgender-Cultural-Footprint">Takeaways about the Transgender Cultural Footprint<a class="anchor-link" href="#Takeaways-about-the-Transgender-Cultural-Footprint">¶</a></h2><h3 id="Words-associated-with-the-Transgender-topic">Words associated with the Transgender topic<a class="anchor-link" href="#Words-associated-with-the-Transgender-topic">¶</a></h3>
+<p>WordClouds turned out to be an incredibly helpful tool for summarizing and visualizing the vast corpi of news articles relating to the 
+transgender topic. Of these, I think the <strong>WorldNewsAPI</strong> Title-based wordcloud is the most aesthetic summation of the cultural understanding of 
+<em>transgender</em>. There's a variety of events and issues surrounding the topic which writers have covered in the past year, giving the viewer a good
+ understanding of the various topics covered in the news, as well as how much each topic was mentioned.</p>
+<figure>
+  <img class="medium-img" src="images/worldnewsapi-wordcloud.png">
+  <figcaption>A WordCloud generated by looking at the Titles of news articles from the World-News-API dataset. Word size corresponds to term frequency.</figcaption>
+</figure>
+<p>There are a few proper nouns referencing specific events, such as <em>brianna</em> and <em>ohio</em>
+  , relating to two dominant stories related to transgender individuals. The first, the horrific killing
+   of transgender teenager Brianna Ghey, exemplifies the disturbingly high rate of violence against transgender
+  women, an issue relating to transgender rights that should not be ignored. The other proper noun, <em>ohio</em>,
+  actually refers to a law restricting so-called <em>gender-affirming</em> care (noteably, <em>genderaffirming</em>
+  is another dominant word in this wordcloud), a legal precedent which highlights a nation-wide battle-ground relating
+  to transgender rights and priveleges: What kind of medical care transgender minors should be allowed to receive.
+  Honestly, pretty much every major topic falling under the umbrella of <em>transgender</em> is present in this wordcloud. 
+  <strong>school</strong> refers to both the ohio bill and a florida bathroom bill aimin to restrict transgender students 
+  to restrooms corresponding to the gender they were assigned at birth. <strong>sport</strong> and <strong>athlere</strong>
+  refer to various controversies surrounding admission into athletic programs, while <strong>law</strong> and <strong>judge</strong>
+  reflect the legal disputes currently going in involving transgender individuals. Interestingly enough, <strong>woman</strong>
+  is almost as common as <strong>gender</strong> in these articles, while <strong>man</strong> is nowhere to be seen on the wordcloud.
+  This reflects a trend in <em>transgender</em> news: transgender women (male-to-female transition) are almost exclusively mentioned in any context.
+  This trend is not merely bias in the news, but seems to reflect a deep cultural discomfort specifically with a male-to-female gender transition.
+  As mentioned in the introduction, transgender <em>women</em> receive a disproportionate share of violence directed towards transgender indiviuals,
+  while <em>black</em> transgender women receive and even more disproportionate share (Brianna Ghey, murdered at age 16, was a transgender woman). But I digress...</p>
+<h3 id="Sub-topics-and-Categories-within-the-Transgender-topic">Sub-topics and Categories within the Transgender topic<a class="anchor-link" href="#Sub-topics-and-Categories-within-the-Transgender-topic">¶</a></h3>
+<p>Through the use of clustering and LDA, the transgender news articles were separated into groups, and sub-divided into topics and categories. These categories paint a cleaner picture of the topics of interest
+   relating to <em>transgender</em> in the news. LDA specifically created excellent topical sub-divisions within the articles, with topics clearly corresponding to a few key issues in the <em>transgender</em> topic.</p>
 <ul>
 <li>Transgender Movement and Legal Battles</li>
 <li>Recent Statewide bans on Genderaffirming care for minors</li>
@@ -7515,10 +7543,28 @@ transgender topic. Of these, I think the <strong>WorldNewsAPI</strong> Title-bas
 <li>Transgender policies within schools, and their effects on minors</li>
 <li>The Brianna Ghey Killing</li>
 </ul>
-<h3 id="How-political-affiliation-and-factuality-affects-the-content-of-News-on-the-Transgender-topic">How political affiliation and factuality affects the content of News on the <em>Transgender</em> topic<a class="anchor-link" href="#How-political-affiliation-and-factuality-affects-the-content-of-News-on-the-Transgender-topic">¶</a></h3><p>Through supervized learning on the Ground News Dataset, I was able to determine if the political slant of a particular news source affected how they covered a particular topic, or if they were more likely to cover a particular story, within the greater <em>transgender</em> topic. 
-    -Good Confusion Matrix
-As you can see, I was able to discern the bias of a particular article on the transgender topic fairly accurately. This indicates that political bias has a strong influence on the content of an article about transgender. But how exactly does this bias influence the article's content?
-        -SVM Significant Features</p>
+<figure>
+  <img class="medium-img" src="images/ban-on-gender-affirming-care-topic.png">
+  <figcaption>LDA analysis provided interesting topic characterizations. This topic clearly relates to Ohio's ban on gender-affirming care for minors.</figcaption>
+</figure>
+<h3 id="How-political-affiliation-and-factuality-affects-the-content-of-News-on-the-Transgender-topic">How political affiliation and factuality affects the content of News on the <em>Transgender</em> topic<a class="anchor-link" href="#How-political-affiliation-and-factuality-affects-the-content-of-News-on-the-Transgender-topic">¶</a></h3>
+<p>Through supervized learning on the Ground News Dataset, I was able to determine if the political slant of a particular news source affected how they covered a
+particular topic, or if they were more likely to cover a particular story, within the greater <em>transgender</em> topic.
+<figure>
+  <img class="medium-img" src="images/Naive-Bayes-classification-c-m.png">
+  <figcaption>A classification confusion matrix for a Naive-Bayes model trained on the Ground News dataset, trying to predict political bias.</figcaption>
+</figure>
+As you can see, I was able to discern the bias of a particular article on the transgender topic fairly accurately. This indicates that political bias has a strong
+influence on the content of an article about transgender. But how exactly does this bias influence the article's content?
+</p>
+<figure>
+  <img class="medium-img" src="images/SVM-significant-features.png">
+  <figcaption>A list of the top 15 significant features used to predict the political bias of a news article by an SVM model. The significance of a term reflects how strongly its presents/absents affected the model's likelihood of classifying an article as one <em>bias</em> or another.</figcaption>
+</figure>
+<p>
+  The SVM model is able to pick up on interesting linguistic tendencies of articles with a particular political slant. It notices that "Texas" is a word whose presents varies significantly depending on an article's political slant.
+   "Jibe" and "Defenceman" are similar. "Woman" alone is apparently a political term! This information gives me an incredible insight into not only whether political slant impacts an article's content, but how it does so!
+</p>
 </div>
 </div>
 </div>
@@ -7541,6 +7587,11 @@ As you can see, I was able to discern the bias of a particular article on the tr
 <li>How many words should I count as 1 token? (i.e. which value of n for n-grams should I be using?)</li>
 </ul>
 <p>Without a clear answer to any of these questions, I resolved to make <strong>20</strong>(!) differend Wdms. Of these, I ended up using only 2-3 for later analysis.</p>
+<figure>
+  <img class="medium-img" src="images/wdms-file-structure.png">
+  <figcaption>A zoomed out view of my folder heirarchy containing all WDMs made for this project. I couldn't open every folder because the hierarchy would be too big to fit into a single screenshot, so I only opened one 
+    folder to give you an idea of the full structure. This folder tree was a nightmare to work with.</figcaption>
+</figure>
 <p>It turns out that designing these pipelines to be verticle, in which each step from raw corpus to analysis is performed within a single <em>.ipynb</em>, is greatly preferable to designing them horizontally.book</p>
 </div>
 </div>
